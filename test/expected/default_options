@@ -1,0 +1,8 @@
+@using GordonApplepie.Core
+@using GordonApplepie.Models.OneModel
+@model MyAwesomeModel
+@inject BigHelper BigHelper
+@{
+    var helpedwithsomething = BigHelper.Help(this.Model);
+}
+<div class="form"><div class="form__button alert"><button id="@(this.Model.Hello())-submit" class="button button--primary" type="button">@Model.Text</button></div></div>
