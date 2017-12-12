@@ -33,10 +33,9 @@ module.exports = function (grunt) {
         minify_cshtml: {
             default_options: {
                 options: {
-                    linebreaks: true
-                },
-                files: {
-                    'tmp/default_options': ['test/fixtures/viewone']
+                    dir: 'test',
+                    filetype: '.cshtml',
+                    test: true
                 }
             },
         },

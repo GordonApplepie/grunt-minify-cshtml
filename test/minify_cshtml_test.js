@@ -30,8 +30,8 @@ exports.minify_cshtml = {
   default_options: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
+    var actual = grunt.file.read('tmp/viewone.cshtml');
+    var expected = grunt.file.read('test/expected/viewone.cshtml');
     test.equal(actual, expected, 'should describe what the default behavior is.');
 
     test.done();

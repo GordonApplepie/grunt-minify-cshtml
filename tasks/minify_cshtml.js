@@ -57,31 +57,24 @@ module.exports = function (grunt) {
             comments: true,
             razorComments: true,
             whitespace: true,
-            linebreaks: true
+            linebreaks: true,
+            dir: 'test',
+            filetype: '.cshtml',
+            test: true
         });
 
         // Iterate over all specified file groups.
-        this.files.forEach(function (f) {
-            // Concat specified files.
-            var src = f.src.filter(function (filepath) {
-                // Warn on and remove invalid source files (if nonull was set).
-                if (!grunt.file.exists(filepath)) {
-                    grunt.log.warn('Source file "' + filepath + '" not found.');
-                    return false;
-                } else {
-                    return true;
+        grunt.file.recurse(options.dir, function (abspath, rootdir, subdir, filename) {
+            if (filename.endsWith(options.filetype)) {
+                if (options.test) {
+                    grunt.file.write('tmp/' + filename, minify(grunt.file.read(abspath), options, grunt));
+                    grunt.log.writeln('File "tmp/' + filename + '" created.');
                 }
-            }).map(function (filepath) {
-                // Read file source.
-                var content = grunt.file.read(filepath);
-                return minify(content, options, grunt);
-            });
-
-            // Write the destination file.
-            grunt.file.write(f.dest, src);
-
-            // Print a success message.
-            grunt.log.writeln('File "' + f.dest + '" created.');
+                else {
+                    grunt.file.write(abspath, minify(grunt.file.read(abspath), options, grunt));
+                    grunt.log.writeln('File "' + abspath + '" overwritten.');
+                }
+            }
         });
     });
 };

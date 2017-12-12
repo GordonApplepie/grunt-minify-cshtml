@@ -1,7 +1,7 @@
 {
   "name": "grunt-minify-cshtml",
   "description": "Minify ASP.NET Razor Views (.cshtml).",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/GordonApplepie/grunt-minify-cshtml",
   "author": {
     "name": "Gordon Mundt",
